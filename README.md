@@ -9,4 +9,4 @@ First, I scraped data from the internet and stored information into SQL. (azlyri
 
 Then, cleaned the data for further processing. (parser.py)
 
-Lastly, analyzed and represented data in JavaScript format. (freqency.py)
+Lastly, analyzed and represented data in JavaScript format. (freqency.py, histogramPhrase.py)
