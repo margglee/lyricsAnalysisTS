@@ -7,6 +7,6 @@ This project was for the Coursera course "Capstone: Retrieving, Processing, and 
 
 First, I scraped data from the internet and stored information into SQL. (azlyricsscraper.py)
 
-Then, cleaned the data (removed &amp and ? from database and html file names) for further processing. (parser.py)
+Then, cleaned the data (removed ? and replace &amp; with 'And' from database and html file names) for further processing. (parser.py)
 
 Lastly, analyzed and represented data in JavaScript format. (freqency.py, histogramPhrase.py)
