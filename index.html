@@ -23,7 +23,41 @@
     <a href="freqTotal.html">Frequency of Selected Words per Album</a><br>
     <a href="freqOnce.html">Count of Songs Containing Selected Words</a><br>
     <a href="kiss.html">Debunked: Swift uses "kissing in the rain" too often</a><br>
-    <br>
+
+    <script src="js/d3.v2.js"></script>
+    <script src="js/d3.layout.cloud.js"></script>
+    <script src="js/wordCloud.js"></script>
+    <script>
+      var fill = d3.scale.category20();
+
+      d3.layout.cloud().size([700, 700])
+          .words(wordCloud)
+          .rotate(function() { return ~~(Math.random() * 2) * 90; })
+          .font("Impact")
+          .fontSize(function(d) { return d.size; })
+          .on("end", draw)
+          .start();
+
+      function draw(words) {
+        d3.select("body").append("svg")
+            .attr("width", 700)
+            .attr("height", 700)
+          .append("g")
+            .attr("transform", "translate(350,350)")
+          .selectAll("text")
+            .data(words)
+          .enter().append("text")
+            .style("font-size", function(d) { return d.size + "px"; })
+            .style("font-family", "Impact")
+            .style("fill", function(d, i) { return fill(i); })
+            .attr("text-anchor", "middle")
+            .attr("transform", function(d) {
+              return "translate(" + [d.x - 50, d.y - 50] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { return d.text; });
+      }
+    </script>
+    <p>Word cloud of Swift's 100 most used words</p>
   </main>
   <footer>
     <p>&#169; 2019</p>

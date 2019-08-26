@@ -17,7 +17,8 @@ stopWords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you",
  "just", "don", "should", "now", "im", "youre", "youll", "youd", "whos",
  "ill", "dont", "hes", "oh", "ah", "said", "think", "wanna", "its", "cause",
  "ive", "would", "got", "let", "shouldve", "still", "could", "la", "cant", 'ooh',
- 'yeah', 'ohoh', 'baby', 'say', 'isnt', 'uh', 'ha', 'id', 'yet']
+ 'yeah', 'ohoh', 'baby', 'say', 'isnt', 'uh', 'ha', 'id', 'yet', 'well', 'hey',
+ 'didnt', 'aint', 'youve', 'theres', 'shes', 'wont', 'whoa']
 
 punct = "!#$%&()*+,-./:;<=>?@[]^_`'{|}~"
 
@@ -33,6 +34,7 @@ result = crsr.fetchall()
 for r in result:
     albumList.append(r[0])
 dictList = list()
+totalDict = dict()
 #opening every song of a particular album and store word count
 for i in range(len(aIdList)):
     a = aIdList[i]
@@ -50,6 +52,7 @@ for i in range(len(aIdList)):
             for word in line.split():
                 if word not in stopWords:
                     d[word] = d.get(word, 0) + 1
+                    totalDict[word] = totalDict.get(word, 0) + 1
 
 
     for k, v in sorted(d.items(), key=lambda word: word[1], reverse=True)[:10]:
@@ -58,6 +61,19 @@ for i in range(len(aIdList)):
 
 #conn.commit()
 conn.close()
+
+fhand = open('wordCloud.js','w')
+fhand.write("wordCloud = [")
+first = True
+for k, v in sorted(totalDict.items(), key=lambda word: word[1], reverse=True)[:100]:
+    if not first : fhand.write( ",\n")
+    first = False
+    fhand.write("{text: '"+k+"', size: "+str(v/3)+"}")
+fhand.write( "\n];\n")
+fhand.close()
+
+print("Output written to wordCloud.js")
+print("Open wordCloud.html in a browser to see the vizualization")
 
 chosenWords = ['like', 'love', 'lover', 'hate', 'heart', 'woman', 'girl', 'boy', 'man']
 fhand = open('freqTotal.js','w')
