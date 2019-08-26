@@ -1,0 +1,37 @@
+<!-- Adapted from https://www.py4e.com/ -->
+<html>
+  <head>
+    <link rel="stylesheet" href="css/stylesheet.css">
+  </head>
+  <body>
+    <h1>Debunked: Taylor Swift uses "kissing in the rain" too often</h1>
+    <p>The phrase "kissing in the rain" is only used three times in 'The Way I Loved You' in her 2006 eponymous debut album, Taylor Swift.</p>
+    <p> Next, we record the number of songs with any variation of kiss (kissing, kissin', kisses) and rain (raining, rainin', rains).</p>
+    <span id="intro"></span>
+    <script>
+        var saying = "";
+        document.getElementById('intro').innerHTML = saying;
+    </script>
+
+    <script type="text/javascript" src="js/kiss.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable( kiss );
+
+        var options = {
+          title: "Count of Songs Containing 'kiss' and 'rain'"
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+    <div id="chart_div" style="width: 1200px; height: 800px;"></div>
+    <p> In her sophomore album, the kiss appeared in approximately half of her songs and both words appeared in her songs three times.
+       In her fifth and sixth album, the two words are not in the same songs. Using this graph, is it significant proof to call her a
+        songwriter that uses cliche imagery with 'kiss' and 'rain'?</p>
+  </body>
+</html>

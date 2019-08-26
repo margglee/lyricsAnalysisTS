@@ -1,0 +1,24 @@
+<!-- Adapted from https://www.py4e.com/ -->
+<html>
+  <head>
+    <script type="text/javascript" src="js/freqTotal.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable( freqTotal );
+
+        var options = {
+          title: "Frequency of Selected Words per Album"
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 1200px; height: 800px;"></div>
+  </body>
+</html>
